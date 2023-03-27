@@ -1,0 +1,14 @@
+{
+  "titles": {
+    "msg001": "Padronize suas mensagens de commit/check-in"
+  },
+  "labels": {
+    "msg001": "Identificador",
+    "msg002": "Tipo",
+    "msg003": "Escopo",
+    "msg004": "Assunto"
+  },
+  "butons": {
+    "msg001": "Gerar"
+  }
+}

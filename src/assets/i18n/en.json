@@ -1,0 +1,14 @@
+{
+  "titles": {
+    "msg001": "Standardize your commit/check-in messages"
+  },
+  "labels": {
+    "msg001": "Identifier",
+    "msg002": "Type",
+    "msg003": "Scope",
+    "msg004": "Subject"
+  },
+  "butons": {
+    "msg001": "Generate"
+  }
+}
