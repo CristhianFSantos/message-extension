@@ -1,0 +1,10 @@
+@import "src/scss/mixins.scss";
+
+.me-header-container {
+  @include flex-center();
+  gap: 15px;
+  .me-header-title {
+    font-size: 1rem;
+    white-space: normal;
+  }
+}
