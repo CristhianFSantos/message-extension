@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
   ChangeLanguageComponent,
-  EnumLanguge,
+  EnumLanguage,
 } from './change-language.component';
 
 describe('ChangeLanguageComponent', () => {
@@ -25,7 +25,7 @@ describe('ChangeLanguageComponent', () => {
   });
 
   it('should set the active language', () => {
-    const mockLanguage = EnumLanguge.PT;
+    const mockLanguage = EnumLanguage.PT;
     const translocoServiceSpy = spyOn(
       component.translocoService,
       'setActiveLang'

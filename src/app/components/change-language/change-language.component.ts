@@ -9,22 +9,22 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, NzSelectModule, FormsModule, TranslocoModule],
   template: ` <nz-select
-    [ngModel]="EnumLanguge.EN"
+    [ngModel]="EnumLanguage.EN"
     (ngModelChange)="changeLanguage($event)"
   >
-    <nz-option [nzValue]="EnumLanguge.EN" nzLabel="EN"></nz-option>
-    <nz-option [nzValue]="EnumLanguge.PT" nzLabel="PT"></nz-option>
+    <nz-option [nzValue]="EnumLanguage.EN" nzLabel="EN"></nz-option>
+    <nz-option [nzValue]="EnumLanguage.PT" nzLabel="PT"></nz-option>
   </nz-select>`,
 })
 export class ChangeLanguageComponent {
   readonly translocoService = inject(TranslocoService);
-  readonly EnumLanguge = EnumLanguge;
+  readonly EnumLanguage = EnumLanguage;
 
-  changeLanguage = (language: EnumLanguge) =>
+  changeLanguage = (language: EnumLanguage) =>
     this.translocoService.setActiveLang(language);
 }
 
-export enum EnumLanguge {
+export enum EnumLanguage {
   EN = 'en',
   PT = 'pt',
 }
