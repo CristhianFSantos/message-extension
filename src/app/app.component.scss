@@ -1,5 +1,14 @@
 @import "src/scss/mixins.scss";
 
+::ng-deep {
+  .me-description-text {
+    strong {
+      text-transform: uppercase;
+      color: #10b981;
+    }
+  }
+}
+
 .me-header-container {
   @include flex-center();
   gap: 15px;
