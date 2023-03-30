@@ -8,7 +8,10 @@
     "msg003": "Scope",
     "msg004": "Subject"
   },
-  "butons": {
+  "buttons": {
     "msg001": "Generate"
+  },
+  "description": {
+    "msg001": "<strong>feat:</strong> development of a new feature<br/><strong>fix:</strong> correction of errors generating bugs<br/><strong>docs:</strong> changes in project documentation<br/><strong>style:</strong> changes in code formatting and style that do not impact the system<br/><strong>refactor:</strong> code refactoring without impact on system logic/business rules<br/><strong>perf:</strong> changes to improve application performance<br/><strong>chore:</strong> changes that do not affect the system, but are related to development<br/><strong>test:</strong> creation or alteration of test codes<br/><strong>build:</strong> changes that affect the build process or external dependencies<br/><strong>ci:</strong> changes in CI configuration files<br/><strong>revert:</strong> reversal of a previous commit/check-in.<br/>"
   }
 }
