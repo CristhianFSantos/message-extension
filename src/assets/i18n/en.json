@@ -8,7 +8,8 @@
     "msg003": "Scope",
     "msg004": "Subject",
     "msg005": "Information",
-    "msg006": "Fill in the fields"
+    "msg006": "Create message",
+    "msg007": "About"
   },
   "buttons": {
     "msg001": "Generate"

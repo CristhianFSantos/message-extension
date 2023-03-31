@@ -8,7 +8,8 @@
     "msg003": "Escopo",
     "msg004": "Assunto",
     "msg005": "Informações",
-    "msg006": "Preencha os campos"
+    "msg006": "Criar mensagem",
+    "msg007": "Sobre"
   },
   "buttons": {
     "msg001": "Gerar"
