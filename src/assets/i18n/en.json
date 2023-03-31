@@ -6,7 +6,9 @@
     "msg001": "Identifier",
     "msg002": "Type",
     "msg003": "Scope",
-    "msg004": "Subject"
+    "msg004": "Subject",
+    "msg005": "Information",
+    "msg006": "Fill in the fields"
   },
   "buttons": {
     "msg001": "Generate"

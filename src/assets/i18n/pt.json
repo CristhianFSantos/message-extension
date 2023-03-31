@@ -6,7 +6,9 @@
     "msg001": "Identificador",
     "msg002": "Tipo",
     "msg003": "Escopo",
-    "msg004": "Assunto"
+    "msg004": "Assunto",
+    "msg005": "Informações",
+    "msg006": "Preencha os campos"
   },
   "buttons": {
     "msg001": "Gerar"
