@@ -9,7 +9,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, NzSelectModule, FormsModule, TranslocoModule],
   template: ` <nz-select
-    [ngModel]="EnumLanguage.EN"
+    [ngModel]="EnumLanguage.PT"
     (ngModelChange)="changeLanguage($event)"
   >
     <nz-option [nzValue]="EnumLanguage.EN" nzLabel="EN"></nz-option>
