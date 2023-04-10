@@ -14,6 +14,9 @@
     "msg009": "Usar padrão customizado",
     "msg010": "Configurações"
   },
+  "error": {
+    "msg001": "Campo obrigatório"
+  },
   "buttons": {
     "msg001": "Gerar"
   },

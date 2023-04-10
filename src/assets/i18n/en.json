@@ -14,6 +14,9 @@
     "msg009": "Use custom pattern",
     "msg010": "Settings"
   },
+  "error": {
+    "msg001": "Required field"
+  },
   "buttons": {
     "msg001": "Generate"
   },
