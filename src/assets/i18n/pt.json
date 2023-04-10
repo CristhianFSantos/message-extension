@@ -9,12 +9,26 @@
     "msg004": "Assunto",
     "msg005": "Informações",
     "msg006": "Criar mensagem",
-    "msg007": "Sobre"
+    "msg007": "Sobre",
+    "msg008": "Selecione um tipo",
+    "msg009": "Usar padrão customizado",
+    "msg010": "Configurações"
   },
   "buttons": {
     "msg001": "Gerar"
   },
   "description": {
-    "msg001": "<strong>funcionalidade:</strong> desenvolvimento de um novo recurso<br/><strong>correção:</strong> correção de erros que geram bugs<br/><strong>documentação:</strong> alterações na documentação do projeto<br/><strong>estilo/formato:</strong> mudanças na formatação e estilo do código que não afetam o sistema<br/><strong>refatoração:</strong> refatoração do código sem impacto na lógica/regras de negócio do sistema<br/><strong>desempenho:</strong> alterações para melhorar a performance da aplicação<br/><strong>tarefa:</strong> mudanças que não afetam o sistema, mas estão relacionadas ao desenvolvimento<br/><strong>teste:</strong> criação ou alteração de códigos de teste<br/><strong>configuração:</strong> mudanças que afetam o processo de compilação ou dependências externas<br/><strong>integração contínua:</strong> mudanças em arquivos de configuração de integração contínua<br/><strong>reversção:</strong> reversão de um commit/check-in anterior.<br/>"
+    "msg001": "<strong>funcionalidade:</strong> desenvolvimento de um novo recurso<br/><strong>correção:</strong> correção de erros que geram bugs<br/><strong>documentação:</strong> alterações na documentação do projeto<br/><strong>estilo/formato:</strong> mudanças na formatação e estilo do código que não afetam o sistema<br/><strong>refatoração:</strong> refatoração do código sem impacto na lógica/regras de negócio do sistema<br/><strong>desempenho:</strong> alterações para melhorar a performance da aplicação<br/><strong>tarefa:</strong> mudanças que não afetam o sistema, mas estão relacionadas ao desenvolvimento<br/><strong>teste:</strong> criação ou alteração de códigos de teste<br/><strong>configuração:</strong> mudanças que afetam o processo de compilação ou dependências externas<br/><strong>integração contínua:</strong> mudanças em arquivos de configuração de integração contínua<br/><strong>reversão:</strong> reversão de um commit/check-in anterior.<br/>",
+    "msg002": "Funcionalidade",
+    "msg003": "Correção",
+    "msg004": "Documentação",
+    "msg005": "Estilo/Formato",
+    "msg006": "Refatoração",
+    "msg007": "Desempenho",
+    "msg008": "Tarefa",
+    "msg009": "Teste",
+    "msg010": "Configuração",
+    "msg011": "Integração Contínua",
+    "msg012": "Reversão"
   }
 }

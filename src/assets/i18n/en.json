@@ -9,12 +9,26 @@
     "msg004": "Subject",
     "msg005": "Information",
     "msg006": "Create message",
-    "msg007": "About"
+    "msg007": "About",
+    "msg008": "Select a type",
+    "msg009": "Use custom pattern",
+    "msg010": "Settings"
   },
   "buttons": {
     "msg001": "Generate"
   },
   "description": {
-    "msg001": "<strong>feat:</strong> development of a new feature<br/><strong>fix:</strong> correction of errors generating bugs<br/><strong>docs:</strong> changes in project documentation<br/><strong>style:</strong> changes in code formatting and style that do not impact the system<br/><strong>refactor:</strong> code refactoring without impact on system logic/business rules<br/><strong>perf:</strong> changes to improve application performance<br/><strong>chore:</strong> changes that do not affect the system, but are related to development<br/><strong>test:</strong> creation or alteration of test codes<br/><strong>build:</strong> changes that affect the build process or external dependencies<br/><strong>ci:</strong> changes in CI configuration files<br/><strong>revert:</strong> reversal of a previous commit/check-in.<br/>"
+    "msg001": "<strong>feat:</strong> development of a new feature<br/><strong>fix:</strong> correction of errors generating bugs<br/><strong>docs:</strong> changes in project documentation<br/><strong>style:</strong> changes in code formatting and style that do not impact the system<br/><strong>refactor:</strong> code refactoring without impact on system logic/business rules<br/><strong>perf:</strong> changes to improve application performance<br/><strong>chore:</strong> changes that do not affect the system, but are related to development<br/><strong>test:</strong> creation or alteration of test codes<br/><strong>build:</strong> changes that affect the build process or external dependencies<br/><strong>ci:</strong> changes in CI configuration files<br/><strong>revert:</strong> reversal of a previous commit/check-in.<br/>",
+    "msg002": "Feat",
+    "msg003": "Fix",
+    "msg004": "Docs",
+    "msg005": "Style",
+    "msg006": "Refactor",
+    "msg007": "Perf",
+    "msg008": "Chore",
+    "msg009": "Test",
+    "msg010": "Build",
+    "msg011": "Ci",
+    "msg012": "Revert"
   }
 }
