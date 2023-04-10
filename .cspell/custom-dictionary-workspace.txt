@@ -1,3 +1,5 @@
 # Custom Dictionary Words
+antd
+ngneat
 tabset
 transloco
