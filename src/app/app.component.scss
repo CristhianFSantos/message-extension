@@ -8,14 +8,19 @@
       color: $secondary-color;
     }
   }
-}
 
-.me-header-container {
-  @include flex-center();
-  gap: 15px;
-  .me-header-title {
-    color: $primary-color;
-    font-size: 1rem;
-    white-space: normal;
+  .ant-tabs-content-holder {
+    width: 380px;
+  }
+}
+.me-container {
+  .me-header-container {
+    @include flex-center();
+    gap: 15px;
+    .me-header-title {
+      color: $primary-color;
+      font-size: 1rem;
+      white-space: normal;
+    }
   }
 }
