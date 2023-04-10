@@ -1,0 +1,43 @@
+@import "src/scss/mixins";
+@import "src/scss/variables";
+
+.container-form-message {
+  @include override-ant-button($secondary-color, $secondary-color-hover);
+  @include flex-center();
+  flex-direction: column;
+
+  .ant-form-item {
+    margin-bottom: 0;
+  }
+  .ant-checkbox-wrapper {
+    margin: 10px 0;
+  }
+
+  input {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  form {
+    .form-message-sub-group {
+      @include flex-center();
+      align-items: flex-start;
+      gap: 30px;
+
+      :last-child {
+        width: 100%;
+      }
+    }
+
+    .form-message-button {
+      margin-top: 1rem;
+    }
+  }
+
+  .message-commit {
+    margin-top: 30px;
+    textarea {
+      resize: none;
+    }
+  }
+}

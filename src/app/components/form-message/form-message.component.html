@@ -1,0 +1,127 @@
+<div class="container-form-message">
+  <form nz-form [formGroup]="formMessage">
+    <div class="form-message-sub-group">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="identifier">{{
+          "labels.msg001" | transloco
+        }}</nz-form-label>
+        <nz-form-control [nzErrorTip]="errorTpl">
+          <nz-input-number
+            formControlName="identifier"
+            nzSize="large"
+            id="identifier"
+            [nzMax]="99999"
+            [nzPrecision]="0"
+            [nzMin]="0"
+            [nzStep]="1"
+          ></nz-input-number>
+          <ng-template #errorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')">{{
+              "error.msg001" | transloco
+            }}</ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="type">{{
+          "labels.msg002" | transloco
+        }}</nz-form-label>
+        <nz-form-control [nzErrorTip]="errorTpl">
+          <nz-select
+            id="type"
+            nzShowSearch
+            formControlName="type"
+            nzAllowClear
+            [nzPlaceHolder]="'labels.msg008' | transloco"
+            nzSize="large"
+          >
+            <nz-option
+              *ngFor="let item of listOptionsType"
+              [nzValue]="item.value"
+              [nzLabel]="item.label | transloco"
+            ></nz-option>
+          </nz-select>
+          <ng-template #errorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')">{{
+              "error.msg001" | transloco
+            }}</ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="scope">{{
+        "labels.msg003" | transloco
+      }}</nz-form-label>
+      <nz-form-control [nzErrorTip]="errorTpl">
+        <input
+          nzSize="large"
+          spellcheck="true"
+          formControlName="scope"
+          nz-input
+          id="scope"
+        />
+      </nz-form-control>
+      <ng-template #errorTpl let-control>
+        <ng-container *ngIf="control.hasError('required')">{{
+          "error.msg001" | transloco
+        }}</ng-container>
+      </ng-template>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="subject">{{
+        "labels.msg004" | transloco
+      }}</nz-form-label>
+      <nz-form-control [nzErrorTip]="errorTpl">
+        <input
+          nzSize="large"
+          spellcheck="true"
+          formControlName="subject"
+          nz-input
+          id="subject"
+        />
+        <ng-template #errorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')">{{
+            "error.msg001" | transloco
+          }}</ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+
+    <label formControlName="customPattern" nz-checkbox>{{
+      "labels.msg009" | transloco
+    }}</label>
+
+    <button
+      [disabled]="!formMessage.valid"
+      nz-button
+      type="submit"
+      class="form-message-button"
+      nzType="primary"
+      nzShape="round"
+      nzSize="large"
+      nzBlock
+      (click)="generateMessage()"
+    >
+      {{ "buttons.msg001" | transloco }}
+    </button>
+  </form>
+  <nz-input-group
+    [nzSuffix]="textAreaCopyTpl"
+    class="ant-input-affix-wrapper-textarea-with-clear-btn message-commit"
+  >
+    <textarea nz-input rows="3" readonly [value]="messageCommit"></textarea>
+  </nz-input-group>
+  <ng-template #textAreaCopyTpl>
+    <span
+      nz-icon
+      class="ant-input-clear-icon"
+      nzTheme="outline"
+      nzType="copy"
+      (click)="copyMessageCommit()"
+    ></span>
+  </ng-template>
+</div>
