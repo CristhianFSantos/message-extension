@@ -2,8 +2,12 @@
   "name": "message-extension",
   "version": "1.0",
   "description": "extension to create commit/check-in messages",
+  "author": "Cristhian Felipe Macedo dos Santos",
   "manifest_version": 3,
   "action": {
-    "default_popup": "index.html"
-  }
+    "default_popup": "index.html",
+    "default_icon": "/assets/images/icons/icon.png",
+    "default_title": "Message Commit/Check-in Extension"
+  },
+  "permissions": ["storage"]
 }
