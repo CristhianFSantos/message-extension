@@ -1,0 +1,9 @@
+{
+  "name": "message-extension",
+  "version": "1.0",
+  "description": "extension to create commit/check-in messages",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "index.html"
+  }
+}
