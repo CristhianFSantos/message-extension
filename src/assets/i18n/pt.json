@@ -17,6 +17,9 @@
   "error": {
     "msg001": "Campo obrigatório"
   },
+  "success": {
+    "msg001": "Mensagem copiada para a área de transferência"
+  },
   "buttons": {
     "msg001": "Gerar"
   },

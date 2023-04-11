@@ -17,6 +17,9 @@
   "error": {
     "msg001": "Required field"
   },
+  "success": {
+    "msg001": "Message copied to clipboard"
+  },
   "buttons": {
     "msg001": "Generate"
   },
