@@ -113,7 +113,13 @@
     [nzSuffix]="textAreaCopyTpl"
     class="ant-input-affix-wrapper-textarea-with-clear-btn message-commit"
   >
-    <textarea nz-input rows="3" readonly [value]="messageCommit"></textarea>
+    <textarea
+      #messageCommitTemplateRef
+      nz-input
+      rows="3"
+      readonly
+      [value]="messageCommit"
+    ></textarea>
   </nz-input-group>
   <ng-template #textAreaCopyTpl>
     <span

@@ -2,7 +2,9 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   OnInit,
+  ViewChild,
   inject,
 } from '@angular/core';
 import {
@@ -18,6 +20,10 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
+import {
+  NzNotificationModule,
+  NzNotificationService,
+} from 'ng-zorro-antd/notification';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { OPTIONS_TYPE } from './form-message.const';
 import { CommitType, FormMessage, OptionsType } from './form-message.models';
@@ -36,12 +42,16 @@ import { CommitType, FormMessage, OptionsType } from './form-message.models';
     NzSelectModule,
     NzCheckboxModule,
     NzIconModule,
+    NzNotificationModule,
   ],
   templateUrl: './form-message.component.html',
   styleUrls: ['./form-message.component.scss'],
 })
 export class FormMessageComponent implements OnInit {
+  @ViewChild('messageCommitTemplateRef')
+  messageCommitTemplateRef: ElementRef<HTMLTextAreaElement>;
   private readonly translocoService = inject(TranslocoService);
+  private readonly nzNotificationService = inject(NzNotificationService);
   listOptionsType: OptionsType[];
   formMessage: FormGroup;
   messageCommit = '';
@@ -55,11 +65,25 @@ export class FormMessageComponent implements OnInit {
     this.messageCommit = this.formMessage.controls['customPattern'].value
       ? this.buildCustomFormMessage(this.formMessage)
       : this.buildDefaultFormMessage(this.formMessage);
+
+    this.nzNotificationService.success(
+      '',
+      this.translocoService.translate('success.msg001'),
+      {
+        nzPlacement: 'top',
+        nzDuration: 4000,
+      }
+    );
+
     this.copyMessageCommit();
   }
 
   copyMessageCommit(): void {
-    //TODO: copy to clipboard
+    setTimeout(() => {
+      this.messageCommitTemplateRef.nativeElement.focus();
+      this.messageCommitTemplateRef.nativeElement.select();
+      document.execCommand('copy');
+    }, 100);
   }
 
   private initFormMessage(): void {
