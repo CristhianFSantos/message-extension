@@ -23,4 +23,7 @@
       white-space: normal;
     }
   }
+  .me-tabset-container {
+    @include flex-center("column");
+  }
 }
