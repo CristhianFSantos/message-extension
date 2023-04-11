@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { registerLocaleData } from '@angular/common';
@@ -10,9 +10,10 @@ import { en_US, NZ_I18N } from 'ng-zorro-antd/i18n';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { AppComponent } from './app.component';
 
+import { TranslocoService } from '@ngneat/transloco';
 import { ChangeLanguageComponent } from './components/change-language/change-language.component';
 import { FormMessageComponent } from './components/form-message/form-message.component';
-import { TranslocoRootModule } from './transloco-root.module';
+import { initTransloco, TranslocoRootModule } from './transloco-root.module';
 
 registerLocaleData(en);
 
@@ -28,7 +29,15 @@ registerLocaleData(en);
     FormMessageComponent,
     NzTabsModule,
   ],
-  providers: [{ provide: NZ_I18N, useValue: en_US }],
+  providers: [
+    { provide: NZ_I18N, useValue: en_US },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initTransloco,
+      deps: [TranslocoService],
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

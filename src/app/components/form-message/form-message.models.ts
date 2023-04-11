@@ -16,3 +16,11 @@ export interface OptionsType {
   label: string;
   value: string;
 }
+
+export interface FormMessage {
+  identifier: number;
+  type: string;
+  scope: string;
+  subject: string;
+  customPattern: boolean;
+}
