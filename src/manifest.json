@@ -1,5 +1,5 @@
 {
-  "name": "message-extension",
+  "name": "Commit message builder",
   "version": "1.0.0",
   "description": "Extensão para criar mensagens padronizadas para commit/check-in",
   "author": "Cristhian Felipe Macedo dos Santos",
