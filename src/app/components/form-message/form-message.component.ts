@@ -87,11 +87,12 @@ export class FormMessageComponent implements OnInit, OnDestroy {
       subject: `${this.formMessage.controls.subject.value}`,
     };
 
+    const pattern = this.formMessage.controls.customPattern.value
+      ? this.userConfig?.pattern ?? this.utilityService.universalPattern
+      : this.utilityService.universalPattern;
+
     this.messageCommit = this.utilityService
-      .buildMessage(
-        this.userConfig?.pattern ?? this.utilityService.universalPattern,
-        message
-      )
+      .buildMessage(pattern, message)
       .toLocaleLowerCase();
 
     this.copyMessageCommit();
