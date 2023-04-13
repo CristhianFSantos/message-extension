@@ -23,7 +23,9 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { Subject, takeUntil } from 'rxjs';
+import { SortListPipe } from 'src/app/pipes/sort-list.pipe';
 import { StorageService, UserConfig } from 'src/app/services/storage.service';
 import { UtilityService } from 'src/app/services/utils.service';
 import { OPTIONS_TYPE } from './form-message.const';
@@ -32,7 +34,9 @@ import { FormMessage, Message, OptionsType } from './form-message.models';
   selector: 'me-form-message',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
+
   imports: [
+    SortListPipe,
     CommonModule,
     NzInputModule,
     TranslocoModule,
@@ -44,6 +48,7 @@ import { FormMessage, Message, OptionsType } from './form-message.models';
     NzCheckboxModule,
     NzIconModule,
     NzNotificationModule,
+    NzToolTipModule,
   ],
   templateUrl: './form-message.component.html',
   styleUrls: ['./form-message.component.scss'],
@@ -64,12 +69,23 @@ export class FormMessageComponent implements OnInit, OnDestroy {
   isFieldsRequired = true;
 
   ngOnInit(): void {
-    this.listOptionsType = OPTIONS_TYPE;
     this.initFormMessage();
     this.loadUserConfig();
     this.observerNotifications();
     this.tryGetIdWorkItemAzureDevops();
     this.tryGetIdIssueGitHub();
+    this.lazyLoadListOptionsType();
+  }
+
+  lazyLoadListOptionsType(): void {
+    this.translocoService.selectTranslation().subscribe(() => {
+      this.listOptionsType = OPTIONS_TYPE.map((option) => {
+        return {
+          ...option,
+          label: this.translocoService.translate(option.label),
+        };
+      });
+    });
   }
 
   ngOnDestroy(): void {
@@ -110,7 +126,7 @@ export class FormMessageComponent implements OnInit, OnDestroy {
   }
 
   private tryGetIdWorkItemAzureDevops(): void {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    chrome.tabs?.query({ active: true, currentWindow: true }, (tabs) => {
       if (tabs) {
         const extractWorkItemNumberFromUrl = (url: string): number | null => {
           const pattern = /workitem=(\d+)/;
@@ -140,7 +156,7 @@ export class FormMessageComponent implements OnInit, OnDestroy {
   }
 
   private tryGetIdIssueGitHub(): void {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    chrome.tabs?.query({ active: true, currentWindow: true }, (tabs) => {
       if (tabs) {
         const extractIssueNumberFromUrl = (url: string): number | null => {
           const pattern = /issues\/(\d+)/;

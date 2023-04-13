@@ -37,9 +37,9 @@
             nzSize="large"
           >
             <nz-option
-              *ngFor="let item of listOptionsType"
+              *ngFor="let item of listOptionsType | sortList : 'label' : 'asc'"
               [nzValue]="item.value"
-              [nzLabel]="item.label | transloco"
+              [nzLabel]="item.label"
             ></nz-option>
           </nz-select>
           <ng-template #errorTpl let-control>
@@ -94,6 +94,16 @@
     <label formControlName="customPattern" nz-checkbox>{{
       "labels.msg009" | transloco
     }}</label>
+
+    <span
+      class="form-message-icon-info"
+      nz-icon
+      nzType="info-circle"
+      nzTheme="twotone"
+      nzTooltipTitle="{{ 'description.msg015' | transloco }}"
+      nzTooltipPlacement="topLeft"
+      nz-tooltip
+    ></span>
 
     <button
       [disabled]="!formMessage.valid"

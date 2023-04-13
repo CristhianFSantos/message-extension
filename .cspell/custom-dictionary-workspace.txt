@@ -3,4 +3,5 @@ antd
 ngneat
 tabset
 transloco
+twotone
 workitem
