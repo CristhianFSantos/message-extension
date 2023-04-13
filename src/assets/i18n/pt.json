@@ -17,7 +17,8 @@
     "msg012": "Sempre usar o formato customizado",
     "msg013": "Formato customizado",
     "msg014": "Todos os campos são obrigatórios",
-    "msg015": "Resultado"
+    "msg015": "Resultado",
+    "msg016": "Aplicar 'AutoSave'"
   },
   "error": {
     "msg001": "Campo obrigatório",
