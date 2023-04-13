@@ -5,7 +5,7 @@
     </header>
     
     
-    <nz-tabset class="me-tabset-container">
+    <nz-tabset [(nzSelectedIndex)]="nzSelectedIndex" class="me-tabset-container">
         <nz-tab [nzTitle]="'🛠️ ' + ('labels.msg006' |transloco)">
             <me-form-message />
         </nz-tab>
@@ -13,7 +13,7 @@
             <p class="me-description-text" [innerHTML]=" 'description.msg001' | transloco"></p>
         </nz-tab>
         <nz-tab [nzTitle]="'⚙️ ' + ('labels.msg010' |transloco)">
-            <img style="width: 400px;" alt="error 404 image" src="https://static.vecteezy.com/system/resources/previews/011/662/746/original/404-error-with-a-cute-animal-cartoon-illustrations-png.png">
+            <me-config (changeTab)="nzSelectedIndex = $event" />
         </nz-tab>
     </nz-tabset>
 </main>

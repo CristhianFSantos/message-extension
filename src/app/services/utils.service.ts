@@ -17,7 +17,7 @@ export class UtilityService {
   readonly eventNotifier$$ = new Subject<void>();
   readonly eventNotifier$ = this.eventNotifier$$.asObservable();
 
-  universalPattern = '$2($3): $4  #$1';
+  readonly universalPattern = '$2($3): $4  #$1';
 
   buildMessage(pattern: string, message: Message) {
     const replacements: { [key: string]: EnumMessage } = {
@@ -38,8 +38,8 @@ export class UtilityService {
       '',
       this.translocoService.translate(message),
       {
-        nzPlacement: 'top',
-        nzDuration: 4000,
+        nzPlacement: 'topRight',
+        nzDuration: 3000,
       }
     );
   }

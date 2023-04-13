@@ -1,0 +1,79 @@
+<main class="container-config">
+  <h1 class="config-title">{{ "labels.msg011" | transloco }}</h1>
+
+  <form class="config-form" [formGroup]="formConfig">
+    <label
+      formControlName="alwaysCustomFormat"
+      class="config-form-check"
+      nz-checkbox
+      >{{ "labels.msg012" | transloco }}</label
+    >
+    <label
+      formControlName="allFieldsRequired"
+      class="config-form-check"
+      nz-checkbox
+      >{{ "labels.msg014" | transloco }}</label
+    >
+
+    <label formControlName="autoSave" class="config-form-check" nz-checkbox>{{
+      "labels.msg016" | transloco
+    }}</label>
+
+    <nz-divider></nz-divider>
+
+    <p
+      class="config-form-info-text"
+      [innerHTML]="'description.msg014' | transloco"
+    ></p>
+    <p
+      class="config-form-info-options"
+      [innerHTML]="'description.msg013' | transloco"
+    ></p>
+
+    <nz-form-item>
+      <nz-form-label nzRequired nzFor="pattern">{{
+        "labels.msg013" | transloco
+      }}</nz-form-label>
+      <nz-form-control [nzErrorTip]="errorTpl">
+        <textarea
+          formControlName="pattern"
+          [placeholder]="patternTextPlaceholder"
+          nzSize="large"
+          spellcheck="false"
+          nz-input
+          id="pattern"
+        ></textarea>
+        <ng-template #errorTpl let-control>
+          <p *ngIf="control.hasError('required')">
+            {{ "error.msg001" | transloco }}
+          </p>
+          <p *ngIf="control.hasError('pattern')">
+            {{ "error.msg002" | transloco }}
+          </p>
+          <p *ngIf="control.hasError('maxlength')">
+            {{ "error.msg003" | transloco }}
+          </p>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+
+    <button
+      [disabled]="formConfig.invalid"
+      nz-button
+      type="submit"
+      nzType="primary"
+      nzShape="round"
+      nzSize="large"
+      nzBlock
+      (click)="save()"
+    >
+      {{ "buttons.msg002" | transloco }}
+    </button>
+  </form>
+
+  <span class="config-result">
+    <strong> {{ "labels.msg015" | transloco }}: </strong>
+    <br />
+    {{ messageExample }}</span
+  >
+</main>

@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 
 import { TranslocoService } from '@ngneat/transloco';
 import { ChangeLanguageComponent } from './components/change-language/change-language.component';
+import { ConfigComponent } from './components/config/config.component';
 import { FormMessageComponent } from './components/form-message/form-message.component';
 import { initTransloco, TranslocoRootModule } from './transloco-root.module';
 
@@ -27,6 +28,7 @@ registerLocaleData(en);
     TranslocoRootModule,
     ChangeLanguageComponent,
     FormMessageComponent,
+    ConfigComponent,
     NzTabsModule,
   ],
   providers: [

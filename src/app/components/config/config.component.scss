@@ -1,0 +1,72 @@
+@import "src/scss/mixins";
+@import "src/scss/variables";
+
+$identifier-color: #e9e445;
+
+::ng-deep {
+  .container-config {
+    .config-form {
+      .config-form-info-options,
+      .config-form-info-text {
+        strong {
+          color: $identifier-color;
+          letter-spacing: 1.2px;
+        }
+      }
+
+      .config-form-info-text {
+        :last-child {
+          color: $primary-color;
+          letter-spacing: 0;
+        }
+      }
+    }
+  }
+}
+
+.container-config {
+  @include override-ant-button($secondary-color, $secondary-color-hover);
+  @include flex-center(column);
+  padding-bottom: 30px;
+
+  .config-title {
+    font-size: 1.5rem;
+  }
+
+  .config-form {
+    @include flex-center(column);
+    width: 100%;
+    gap: 10px;
+    align-items: flex-start;
+
+    .config-form-check {
+      margin-left: 0;
+    }
+
+    nz-form-control,
+    nz-form-item {
+      width: 100%;
+      textarea {
+        width: 100%;
+        color: $identifier-color;
+        text-transform: lowercase;
+        font-weight: bold;
+        font-size: 1.2rem;
+        resize: none;
+      }
+    }
+  }
+
+  .config-result {
+    align-self: flex-start;
+    margin-top: 20px;
+    color: $primary-color;
+    letter-spacing: 1px;
+    font-size: 1rem;
+
+    strong {
+      color: $identifier-color;
+      font-size: 0.8rem;
+    }
+  }
+}
