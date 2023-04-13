@@ -2,7 +2,7 @@
   <form nz-form [formGroup]="formMessage">
     <div class="form-message-sub-group">
       <nz-form-item>
-        <nz-form-label nzRequired nzFor="identifier">{{
+        <nz-form-label [nzRequired]="isFieldsRequired" nzFor="identifier">{{
           "labels.msg001" | transloco
         }}</nz-form-label>
         <nz-form-control [nzErrorTip]="errorTpl">
@@ -24,7 +24,7 @@
       </nz-form-item>
 
       <nz-form-item>
-        <nz-form-label nzRequired nzFor="type">{{
+        <nz-form-label [nzRequired]="isFieldsRequired" nzFor="type">{{
           "labels.msg002" | transloco
         }}</nz-form-label>
         <nz-form-control [nzErrorTip]="errorTpl">
@@ -52,7 +52,7 @@
     </div>
 
     <nz-form-item>
-      <nz-form-label nzRequired nzFor="scope">{{
+      <nz-form-label [nzRequired]="isFieldsRequired" nzFor="scope">{{
         "labels.msg003" | transloco
       }}</nz-form-label>
       <nz-form-control [nzErrorTip]="errorTpl">
@@ -72,7 +72,7 @@
     </nz-form-item>
 
     <nz-form-item>
-      <nz-form-label nzRequired nzFor="subject">{{
+      <nz-form-label [nzRequired]="isFieldsRequired" nzFor="subject">{{
         "labels.msg004" | transloco
       }}</nz-form-label>
       <nz-form-control [nzErrorTip]="errorTpl">

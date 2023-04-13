@@ -1,3 +1,5 @@
+import { FormControl } from '@angular/forms';
+
 export enum CommitType {
   Feat = 'Feat',
   Fix = 'Fix',
@@ -18,9 +20,23 @@ export interface OptionsType {
 }
 
 export interface FormMessage {
-  identifier: number;
+  identifier: FormControl<number | null>;
+  type: FormControl<CommitType | null>;
+  scope: FormControl<string | null>;
+  subject: FormControl<string | null>;
+  customPattern: FormControl<boolean | null>;
+}
+
+export interface Message {
+  identifier: string;
   type: string;
   scope: string;
   subject: string;
-  customPattern: boolean;
+}
+
+export enum EnumMessage {
+  Identifier = 'identifier',
+  Type = 'type',
+  Scope = 'scope',
+  Subject = 'subject',
 }

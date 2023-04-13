@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  OnDestroy,
   OnInit,
   ViewChild,
   inject,
@@ -20,13 +21,13 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
-import {
-  NzNotificationModule,
-  NzNotificationService,
-} from 'ng-zorro-antd/notification';
+import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { Subject, takeUntil } from 'rxjs';
+import { StorageService, UserConfig } from 'src/app/services/storage.service';
+import { UtilityService } from 'src/app/services/utils.service';
 import { OPTIONS_TYPE } from './form-message.const';
-import { CommitType, FormMessage, OptionsType } from './form-message.models';
+import { FormMessage, Message, OptionsType } from './form-message.models';
 @Component({
   selector: 'me-form-message',
   standalone: true,
@@ -47,35 +48,54 @@ import { CommitType, FormMessage, OptionsType } from './form-message.models';
   templateUrl: './form-message.component.html',
   styleUrls: ['./form-message.component.scss'],
 })
-export class FormMessageComponent implements OnInit {
+export class FormMessageComponent implements OnInit, OnDestroy {
   @ViewChild('messageCommitTemplateRef')
   messageCommitTemplateRef: ElementRef<HTMLTextAreaElement>;
   private readonly translocoService = inject(TranslocoService);
-  private readonly nzNotificationService = inject(NzNotificationService);
+  private readonly storageService = inject(StorageService);
+  private readonly utilsService = inject(UtilityService);
+
+  notifier$$ = new Subject<void>();
+
   listOptionsType: OptionsType[];
-  formMessage: FormGroup;
+  formMessage: FormGroup<FormMessage>;
   messageCommit = '';
+  userConfig: UserConfig | null = null;
+  isFieldsRequired = true;
 
   ngOnInit(): void {
     this.listOptionsType = OPTIONS_TYPE;
     this.initFormMessage();
+    this.loadUserConfig();
+    this.observerNotifications();
   }
 
-  generateMessage(): void {
-    this.messageCommit = this.formMessage.controls['customPattern'].value
-      ? this.buildCustomFormMessage(this.formMessage)
-      : this.buildDefaultFormMessage(this.formMessage);
+  ngOnDestroy(): void {
+    this.notifier$$.next();
+    this.notifier$$.complete();
+  }
 
-    this.nzNotificationService.success(
-      '',
-      this.translocoService.translate('success.msg001'),
-      {
-        nzPlacement: 'top',
-        nzDuration: 4000,
-      }
-    );
+  async generateMessage(): Promise<void> {
+    const translateTypeLabel = OPTIONS_TYPE.find(
+      (option) => option.value === this.formMessage.controls.type.value
+    )?.label as string;
+
+    const message: Message = {
+      identifier: `${this.formMessage.controls.identifier.value}`,
+      type: this.translocoService.translate(translateTypeLabel),
+      scope: `${this.formMessage.controls.scope.value}`,
+      subject: `${this.formMessage.controls.subject.value}`,
+    };
+
+    this.messageCommit = this.utilsService
+      .buildMessage(
+        this.userConfig?.pattern ?? this.utilsService.universalPattern,
+        message
+      )
+      .toLocaleLowerCase();
 
     this.copyMessageCommit();
+    this.utilsService.showNotificationSuccess('success.msg001');
   }
 
   copyMessageCommit(): void {
@@ -86,38 +106,61 @@ export class FormMessageComponent implements OnInit {
     }, 100);
   }
 
+  private async loadUserConfig(): Promise<void> {
+    const userConfig =
+      (await this.storageService.getUserConfig()) as UserConfig | null;
+
+    if (!userConfig) return;
+    this.userConfig = userConfig;
+
+    this.isFieldsRequired = this.userConfig.allFieldsRequired;
+
+    this.formMessage.controls.customPattern.enable();
+    this.formMessage.controls.customPattern.setValue(
+      this.userConfig.alwaysCustomFormat
+    );
+
+    this.applyConditionalRequiredValidator(
+      this.userConfig.allFieldsRequired,
+      this.formMessage
+    );
+  }
+
   private initFormMessage(): void {
-    this.formMessage = new FormGroup({
-      identifier: new FormControl<number | null>(null, Validators.required),
-      type: new FormControl<CommitType | null>(null, Validators.required),
-      scope: new FormControl<string | null>(null, Validators.required),
-      subject: new FormControl<string | null>(null, Validators.required),
-      customPattern: new FormControl<boolean>(false),
+    this.formMessage = new FormGroup<FormMessage>({
+      identifier: new FormControl(null, Validators.required),
+      type: new FormControl(null, Validators.required),
+      scope: new FormControl(null, Validators.required),
+      subject: new FormControl(null, Validators.required),
+      customPattern: new FormControl({
+        value: false,
+        disabled: true,
+      }),
     });
   }
 
-  private buildDefaultFormMessage(form: FormGroup): string {
-    const formMessage = this.buildObjectMessage(form);
-    return `${formMessage.type}(${formMessage.scope}): ${formMessage.subject}\n#${formMessage.identifier}`.toLocaleLowerCase();
+  private applyConditionalRequiredValidator(
+    isRequired: boolean,
+    form: FormGroup<FormMessage>
+  ): void {
+    const validators = isRequired ? [Validators.required] : [];
+    form.controls.identifier.setValidators([...validators]);
+    form.controls.type.setValidators([...validators]);
+    form.controls.scope.setValidators([...validators]);
+    form.controls.subject.setValidators([...validators]);
+    form.controls.identifier.updateValueAndValidity();
+    form.controls.type.updateValueAndValidity();
+    form.controls.scope.updateValueAndValidity();
+    form.controls.subject.updateValueAndValidity();
   }
 
-  private buildCustomFormMessage(form: FormGroup): string {
-    const formMessage = this.buildObjectMessage(form);
-    return `[${formMessage.identifier}][${formMessage.type}][${formMessage.scope}] ${formMessage.subject}`.toLocaleLowerCase();
-  }
-
-  private buildObjectMessage(form: FormGroup): FormMessage {
-    const formMessage: FormMessage = {
-      ...form.value,
-    };
-
-    const label = OPTIONS_TYPE.find(
-      (option) => option.value === form.value.type
-    )?.label as string;
-
-    return {
-      ...formMessage,
-      type: this.translocoService.translate(label),
-    };
+  private observerNotifications(): void {
+    this.utilsService.eventNotifier$
+      .pipe(takeUntil(this.notifier$$))
+      .subscribe(() => {
+        this.formMessage.reset();
+        this.messageCommit = '';
+        this.loadUserConfig();
+      });
   }
 }
