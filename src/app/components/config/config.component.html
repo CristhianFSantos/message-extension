@@ -1,7 +1,7 @@
 <main class="container-config">
   <h1 class="config-title">{{ "labels.msg011" | transloco }}</h1>
 
-  <form class="config-form" [formGroup]="formConfig">
+  <form class="config-form" (ngSubmit)="save()" [formGroup]="formConfig">
     <label
       formControlName="alwaysCustomFormat"
       class="config-form-check"
@@ -65,7 +65,6 @@
       nzShape="round"
       nzSize="large"
       nzBlock
-      (click)="save()"
     >
       {{ "buttons.msg002" | transloco }}
     </button>

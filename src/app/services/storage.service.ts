@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class StorageService {
-  async post(userConfig: UserConfig): Promise<void> {
+  async postUserConfig(userConfig: UserConfig): Promise<void> {
     return new Promise((resolve) => {
       chrome.storage?.sync?.set({ userConfig }, () => resolve());
     });

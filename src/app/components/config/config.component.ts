@@ -58,9 +58,18 @@ export class ConfigComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
     this.observeForm();
+    this.loadUserConfig();
   }
 
-  initForm(): void {
+  private loadUserConfig(): void {
+    this.storageService.getUserConfig().then((userConfig: UserConfig) => {
+      if (userConfig) {
+        this.formConfig.patchValue(userConfig);
+      }
+    });
+  }
+
+  private initForm(): void {
     this.formConfig = new FormGroup<UserConfigForm>({
       alwaysCustomFormat: new FormControl<boolean>(false),
       allFieldsRequired: new FormControl<boolean>(true),
@@ -72,7 +81,7 @@ export class ConfigComponent implements OnInit {
     });
   }
 
-  observeForm(): void {
+  private observeForm(): void {
     this.formConfig.controls.pattern.valueChanges.subscribe((value: any) => {
       this.messageExample = this.utilityService.buildMessage(value, {
         type: this.translocoService
@@ -93,7 +102,7 @@ export class ConfigComponent implements OnInit {
 
   save(): void {
     const userConfig = this.formConfig.value as UserConfig;
-    this.storageService.post(userConfig).then(() => {
+    this.storageService.postUserConfig(userConfig).then(() => {
       this.utilityService.eventNotifier$$.next();
     });
     this.changeTab.emit(0);
