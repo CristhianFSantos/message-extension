@@ -53,7 +53,7 @@ export class FormMessageComponent implements OnInit, OnDestroy {
   messageCommitTemplateRef: ElementRef<HTMLTextAreaElement>;
   private readonly translocoService = inject(TranslocoService);
   private readonly storageService = inject(StorageService);
-  private readonly utilsService = inject(UtilityService);
+  private readonly utilityService = inject(UtilityService);
 
   notifier$$ = new Subject<void>();
 
@@ -87,15 +87,15 @@ export class FormMessageComponent implements OnInit, OnDestroy {
       subject: `${this.formMessage.controls.subject.value}`,
     };
 
-    this.messageCommit = this.utilsService
+    this.messageCommit = this.utilityService
       .buildMessage(
-        this.userConfig?.pattern ?? this.utilsService.universalPattern,
+        this.userConfig?.pattern ?? this.utilityService.universalPattern,
         message
       )
       .toLocaleLowerCase();
 
     this.copyMessageCommit();
-    this.utilsService.showNotificationSuccess('success.msg001');
+    this.utilityService.showNotificationSuccess('success.msg001');
   }
 
   copyMessageCommit(): void {
@@ -155,7 +155,7 @@ export class FormMessageComponent implements OnInit, OnDestroy {
   }
 
   private observerNotifications(): void {
-    this.utilsService.eventNotifier$
+    this.utilityService.eventNotifier$
       .pipe(takeUntil(this.notifier$$))
       .subscribe(() => {
         this.formMessage.reset();
