@@ -3,3 +3,4 @@ antd
 ngneat
 tabset
 transloco
+workitem
