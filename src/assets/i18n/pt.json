@@ -12,16 +12,25 @@
     "msg007": "Sobre",
     "msg008": "Selecione um tipo",
     "msg009": "Usar formato customizado",
-    "msg010": "Configurações"
+    "msg010": "Configurações",
+    "msg011": "Configurações do usuário",
+    "msg012": "Sempre usar o formato customizado",
+    "msg013": "Formato customizado",
+    "msg014": "Todos os campos são obrigatórios",
+    "msg015": "Resultado"
   },
   "error": {
-    "msg001": "Campo obrigatório"
+    "msg001": "Campo obrigatório",
+    "msg002": "O padrão informado não é válido",
+    "msg003": "O limite máximo de 25 caracteres foi excedido"
   },
   "success": {
-    "msg001": "Mensagem copiada para a área de transferência"
+    "msg001": "Mensagem copiada para a área de transferência",
+    "msg002": "Configurações salvas com sucesso"
   },
   "buttons": {
-    "msg001": "Gerar"
+    "msg001": "Gerar",
+    "msg002": "Salvar"
   },
   "description": {
     "msg001": "<strong>funcionalidade:</strong> desenvolvimento de um novo recurso<br/><strong>correção:</strong> correção de erros que geram bugs<br/><strong>documentação:</strong> alterações na documentação do projeto<br/><strong>estilo/formato:</strong> mudanças na formatação e estilo do código que não afetam o sistema<br/><strong>refatoração:</strong> refatoração do código sem impacto na lógica/regras de negócio do sistema<br/><strong>desempenho:</strong> alterações para melhorar a performance da aplicação<br/><strong>tarefa:</strong> mudanças que não afetam o sistema, mas estão relacionadas ao desenvolvimento<br/><strong>teste:</strong> criação ou alteração de códigos de teste<br/><strong>configuração:</strong> mudanças que afetam o processo de compilação ou dependências externas<br/><strong>integração contínua:</strong> mudanças em arquivos de configuração de integração contínua<br/><strong>reversão:</strong> reversão de um commit/check-in anterior.<br/>",
@@ -35,6 +44,8 @@
     "msg009": "Teste",
     "msg010": "Configuração",
     "msg011": "Integração Contínua",
-    "msg012": "Reversão"
+    "msg012": "Reversão",
+    "msg013": "<strong>$1</strong> :  Identificador / Identifier <br /><strong>$2</strong> :  Tipo / Type <br /><strong>$3</strong> :  Escopo / Scope <br /><strong>$4</strong> :  Assunto / Subject ",
+    "msg014": "Para criar um formato personalizado, você deve escrever na forma de texto o que desejar.<br />Veja o exemplo:<br />Entrada: [<strong>$1</strong>][<strong>$2</strong>][<strong>$3</strong>] <strong>$4</strong><br />Saída: <strong>[3546][correção][global] alterar a cor do botão</strong>"
   }
 }

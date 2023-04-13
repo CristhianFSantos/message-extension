@@ -12,16 +12,25 @@
     "msg007": "About",
     "msg008": "Select a type",
     "msg009": "Use custom format",
-    "msg010": "Settings"
+    "msg010": "Settings",
+    "msg011": "User settings",
+    "msg012": "Always use custom format",
+    "msg013": "Custom format",
+    "msg014": "All fields are required",
+    "msg015": "Result"
   },
   "error": {
-    "msg001": "Required field"
+    "msg001": "Required field",
+    "msg002": "The informed standard is not valid",
+    "msg003": "The maximum limit of 25 characters has been exceeded"
   },
   "success": {
-    "msg001": "Message copied to clipboard"
+    "msg001": "Message copied to clipboard",
+    "msg002": "Settings saved successfully"
   },
   "buttons": {
-    "msg001": "Generate"
+    "msg001": "Generate",
+    "msg002": "Save"
   },
   "description": {
     "msg001": "<strong>feat:</strong> development of a new feature<br/><strong>fix:</strong> correction of errors generating bugs<br/><strong>docs:</strong> changes in project documentation<br/><strong>style:</strong> changes in code formatting and style that do not impact the system<br/><strong>refactor:</strong> code refactoring without impact on system logic/business rules<br/><strong>perf:</strong> changes to improve application performance<br/><strong>chore:</strong> changes that do not affect the system, but are related to development<br/><strong>test:</strong> creation or alteration of test codes<br/><strong>build:</strong> changes that affect the build process or external dependencies<br/><strong>ci:</strong> changes in CI configuration files<br/><strong>revert:</strong> reversal of a previous commit/check-in.<br/>",
@@ -35,6 +44,8 @@
     "msg009": "Test",
     "msg010": "Build",
     "msg011": "Ci",
-    "msg012": "Revert"
+    "msg012": "Revert",
+    "msg013": "<strong>$1</strong> :  Identificador / Identifier <br /><strong>$2</strong> :  Tipo / Type <br /><strong>$3</strong> :  Escopo / Scope <br /><strong>$4</strong> :  Assunto / Subject ",
+    "msg014": "To create a custom format, you must write whatever you want as text.<br />See example:<br />Input: [<strong>$1</strong>][<strong>$2</strong>][<strong>$3</strong>] <strong>$4</strong><br />Output: <strong> [3546][fix][global] change button color</strong>"
   }
 }
