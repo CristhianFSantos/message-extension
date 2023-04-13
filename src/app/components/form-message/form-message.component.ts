@@ -68,6 +68,8 @@ export class FormMessageComponent implements OnInit, OnDestroy {
     this.initFormMessage();
     this.loadUserConfig();
     this.observerNotifications();
+    this.tryGetIdWorkItemAzureDevops();
+    this.tryGetIdIssueGitHub();
   }
 
   ngOnDestroy(): void {
@@ -105,6 +107,56 @@ export class FormMessageComponent implements OnInit, OnDestroy {
       this.messageCommitTemplateRef.nativeElement.select();
       document.execCommand('copy');
     }, 100);
+  }
+
+  private tryGetIdWorkItemAzureDevops(): void {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      if (tabs) {
+        const extractWorkItemNumberFromUrl = (url: string): number | null => {
+          const pattern = /workitem=(\d+)/;
+          const match = url.match(pattern);
+          return match ? Number(match[1]) : null;
+        };
+
+        const extractWorkItemNumberFromEditUrl = (
+          url: string
+        ): number | null => {
+          const pattern = /\/edit\/(\d+)/;
+          const match = url.match(pattern);
+          return match ? Number(match[1]) : null;
+        };
+
+        const workItemNumber =
+          extractWorkItemNumberFromUrl(tabs[0]['url'] ?? '') ??
+          extractWorkItemNumberFromEditUrl(tabs[0]['url'] ?? '') ??
+          0;
+
+        if (workItemNumber && !this.formMessage.controls.identifier.value) {
+          this.formMessage.controls.identifier.setValue(workItemNumber);
+          this.formMessage.controls.identifier.updateValueAndValidity();
+        }
+      }
+    });
+  }
+
+  private tryGetIdIssueGitHub(): void {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      if (tabs) {
+        const extractIssueNumberFromUrl = (url: string): number | null => {
+          const pattern = /issues\/(\d+)/;
+          const match = url.match(pattern);
+          return match ? Number(match[1]) : null;
+        };
+
+        const issueNumber =
+          extractIssueNumberFromUrl(tabs[0]['url'] ?? '') ?? 0;
+
+        if (issueNumber && !this.formMessage.controls.identifier.value) {
+          this.formMessage.controls.identifier.setValue(issueNumber);
+          this.formMessage.controls.identifier.updateValueAndValidity();
+        }
+      }
+    });
   }
 
   private async loadUserConfig(): Promise<void> {
