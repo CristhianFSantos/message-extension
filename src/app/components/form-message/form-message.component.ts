@@ -75,17 +75,7 @@ export class FormMessageComponent implements OnInit, OnDestroy {
     this.tryGetIdWorkItemAzureDevops();
     this.tryGetIdIssueGitHub();
     this.lazyLoadListOptionsType();
-  }
-
-  lazyLoadListOptionsType(): void {
-    this.translocoService.selectTranslation().subscribe(() => {
-      this.listOptionsType = OPTIONS_TYPE.map((option) => {
-        return {
-          ...option,
-          label: this.translocoService.translate(option.label),
-        };
-      });
-    });
+    this.tryLoadLastMessage();
   }
 
   ngOnDestroy(): void {
@@ -113,8 +103,11 @@ export class FormMessageComponent implements OnInit, OnDestroy {
       .buildMessage(pattern, message)
       .toLocaleLowerCase();
 
+    if (this.userConfig?.saveLastMessage) {
+      this.storageService.postLastMessage(this.messageCommit);
+    }
+
     this.copyMessageCommit();
-    this.utilityService.showNotificationSuccess('success.msg001');
   }
 
   copyMessageCommit(): void {
@@ -122,7 +115,29 @@ export class FormMessageComponent implements OnInit, OnDestroy {
       this.messageCommitTemplateRef.nativeElement.focus();
       this.messageCommitTemplateRef.nativeElement.select();
       document.execCommand('copy');
+      this.utilityService.showNotificationSuccess('success.msg001');
     }, 100);
+  }
+
+  private async tryLoadLastMessage() {
+    const lastMessage = (await this.storageService.getLastMessage()) as
+      | string
+      | null;
+
+    if (lastMessage && this.messageCommit === '') {
+      this.messageCommit = lastMessage;
+    }
+  }
+
+  private lazyLoadListOptionsType(): void {
+    this.translocoService.selectTranslation().subscribe(() => {
+      this.listOptionsType = OPTIONS_TYPE.map((option) => {
+        return {
+          ...option,
+          label: this.translocoService.translate(option.label),
+        };
+      });
+    });
   }
 
   private tryGetIdWorkItemAzureDevops(): void {

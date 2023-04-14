@@ -73,7 +73,7 @@ export class ConfigComponent implements OnInit {
     this.formConfig = new FormGroup<UserConfigForm>({
       alwaysCustomFormat: new FormControl<boolean>(false),
       allFieldsRequired: new FormControl<boolean>(true),
-      autoSave: new FormControl<boolean>(false),
+      saveLastMessage: new FormControl<boolean>(false),
       pattern: new FormControl<string>('', [
         Validators.pattern(/\$(1|2|3|4)/),
         Validators.maxLength(25),

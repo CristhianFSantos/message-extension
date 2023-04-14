@@ -17,11 +17,25 @@ export class StorageService {
       );
     });
   }
+
+  async postLastMessage(message: string): Promise<void> {
+    return new Promise((resolve) => {
+      chrome.storage?.sync?.set({ message }, () => resolve());
+    });
+  }
+
+  async getLastMessage(): Promise<string> {
+    return new Promise((resolve) => {
+      chrome.storage?.sync?.get?.(['message'], (response) =>
+        resolve(response['message'] as string)
+      );
+    });
+  }
 }
 
 export interface UserConfig {
   alwaysCustomFormat: boolean;
   allFieldsRequired: boolean;
-  autoSave: boolean;
+  saveLastMessage: boolean;
   pattern: string;
 }
