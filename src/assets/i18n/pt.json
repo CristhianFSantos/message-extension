@@ -48,6 +48,7 @@
     "msg012": "Reversão",
     "msg013": "<strong>$1</strong> :  Identificador / Identifier <br /><strong>$2</strong> :  Tipo / Type <br /><strong>$3</strong> :  Escopo / Scope <br /><strong>$4</strong> :  Assunto / Subject ",
     "msg014": "Para criar um formato personalizado, você deve escrever na forma de texto o que desejar.<br />Veja o exemplo:<br />Entrada: [<strong>$1</strong>][<strong>$2</strong>][<strong>$3</strong>] <strong>$4</strong><br />Saída: <strong>[3546][correção][global] alterar a cor do botão</strong>",
-    "msg015": "O campo assunto é de grande importância para dar significado a sua mensagem de commit/check-in. Informe nesse campo o que o seu commit/check-in faz em relação ao projeto. Opte por usar verbos no modo imperativo da 2ª pessoa do singular, normalmente essa é a forma mais fácil de escrever uma boa mensagem."
+    "msg015": "O campo assunto é de grande importância para dar significado a sua mensagem de commit/check-in. Informe nesse campo o que o seu commit/check-in faz em relação ao projeto. Opte por usar verbos no modo imperativo da 2ª pessoa do singular, normalmente essa é a forma mais fácil de escrever uma boa mensagem.",
+    "msg016": "Você gostou da extensão?<br/>Se ela te ajuda de alguma forma e você quer apoiar este projeto, você pode fazer um <strong>pix</strong> através deste QR Code, ou me doar um café no  <strong>buymeacoffee.com </strong> ☕"
   }
 }
