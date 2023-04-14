@@ -1,0 +1,18 @@
+name: Check for feat
+on:
+  push:
+    branches:
+      - main
+jobs:
+  check-for-feat:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Check for feat
+      run: |
+        if [[ $(git log --pretty=format:%s -1) == *"feat"* ]]; then
+          echo "feat found"
+        else
+          echo "feat not found"
+        fi
