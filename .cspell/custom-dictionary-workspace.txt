@@ -1,6 +1,8 @@
 # Custom Dictionary Words
 antd
+linkedin
 ngneat
+qrcode
 tabset
 transloco
 twotone
