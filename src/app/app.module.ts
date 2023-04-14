@@ -11,6 +11,7 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { AppComponent } from './app.component';
 
 import { TranslocoService } from '@ngneat/transloco';
+import { AboutComponent } from './components/about/about.component';
 import { ChangeLanguageComponent } from './components/change-language/change-language.component';
 import { ConfigComponent } from './components/config/config.component';
 import { FormMessageComponent } from './components/form-message/form-message.component';
@@ -30,6 +31,7 @@ registerLocaleData(en);
     FormMessageComponent,
     ConfigComponent,
     NzTabsModule,
+    AboutComponent,
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },

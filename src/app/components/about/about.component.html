@@ -1,0 +1,50 @@
+<nz-divider></nz-divider>
+<main class="container-about">
+  <div class="about-profile">
+    <img
+      class="about-profile-image"
+      src="https://media.licdn.com/dms/image/C4E03AQGZuP7q6QIM0A/profile-displayphoto-shrink_200_200/0/1632700643916?e=1686787200&v=beta&t=VUVMo3wWO9OQy-yVuRKiIm9wJ3Red3_h9uPcYz_HuLA"
+      alt="image profile"
+    />
+
+    <div class="about-profile-identity">
+      <h1 class="about-profile-identity-name">Cristhian Santos</h1>
+      <h2 class="about-profile-identity-job">Frontend Developer</h2>
+    </div>
+  </div>
+
+  <div class="about-donate">
+    <div class="about-donate-social">
+      <a
+        target="_blank"
+        href="https://www.linkedin.com/in/cristhian-felipe-santos/"
+        ><span nz-icon nzType="linkedin" nzTheme="fill"></span
+      ></a>
+      <a target="_blank" href="https://www.instagram.com/dev.brasil/"
+        ><span nz-icon nzType="instagram" nzTheme="fill"></span
+      ></a>
+      <a target="_blank" href="mailto:cristthian@outlook.com"
+        ><span nz-icon nzType="mail" nzTheme="fill"></span
+      ></a>
+      <a
+        target="_blank"
+        href="https://github.com/CristhianFSantos/message-extension"
+        ><span nz-icon nzType="github" nzTheme="fill"></span
+      ></a>
+    </div>
+
+    <img src="/assets/images/qrcode-donate.png" alt="qrcode donate" />
+
+    <span [innerHTML]="'description.msg016' | transloco"></span>
+  </div>
+
+  <a
+    class="about-donate-coffee"
+    href="https://www.buymeacoffee.com/cristthianf"
+    target="_blank"
+    ><img
+      src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
+      alt="Buy Me A Coffee"
+      style="height: 60px !important; width: 217px !important"
+  /></a>
+</main>

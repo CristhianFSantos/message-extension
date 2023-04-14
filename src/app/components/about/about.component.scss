@@ -1,0 +1,79 @@
+@import "src/scss/mixins";
+@import "src/scss/variables";
+
+::ng-deep {
+  .about-donate {
+    span {
+      strong {
+        color: #ffdd00;
+      }
+    }
+  }
+}
+
+.container-about {
+  @include flex-center(column);
+
+  .about-profile {
+    @include flex-center();
+    width: 100%;
+    justify-content: flex-start;
+    gap: 20px;
+
+    .about-profile-image {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .about-profile-identity-name {
+      font-size: 1.5rem;
+
+      margin: 0;
+    }
+
+    .about-profile-identity-job {
+      font-size: 1rem;
+      color: $primary-color;
+      font-weight: bold;
+    }
+  }
+
+  .about-donate {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    width: 100%;
+    gap: 10px;
+    margin: 20px 0;
+
+    img {
+      width: 130px;
+      height: 130px;
+      border: 4px solid #ffffff;
+    }
+
+    .about-donate-social {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      height: 100%;
+      gap: 8px;
+
+      span {
+        font-size: 1.5rem;
+        color: #ffffff;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .about-donate-coffee {
+    align-self: flex-start;
+    margin-bottom: 40px;
+  }
+}

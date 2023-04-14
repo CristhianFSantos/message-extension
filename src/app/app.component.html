@@ -11,6 +11,7 @@
         </nz-tab>
         <nz-tab [nzTitle]="'📖 ' + ('labels.msg005' |transloco)">
             <p class="me-description-text" [innerHTML]=" 'description.msg001' | transloco"></p>
+            <me-about />
         </nz-tab>
         <nz-tab [nzTitle]="'⚙️ ' + ('labels.msg010' |transloco)">
             <me-config (changeTab)="nzSelectedIndex = $event" />
