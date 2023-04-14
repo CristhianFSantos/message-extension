@@ -22,6 +22,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { Subject, takeUntil } from 'rxjs';
@@ -49,6 +50,7 @@ import { FormMessage, Message, OptionsType } from './form-message.models';
     NzIconModule,
     NzNotificationModule,
     NzToolTipModule,
+    NzPopoverModule,
   ],
   templateUrl: './form-message.component.html',
   styleUrls: ['./form-message.component.scss'],

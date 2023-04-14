@@ -49,6 +49,7 @@
     "msg013": "<strong>$1</strong> :  Identificador / Identifier <br /><strong>$2</strong> :  Tipo / Type <br /><strong>$3</strong> :  Escopo / Scope <br /><strong>$4</strong> :  Assunto / Subject ",
     "msg014": "To create a custom format, you must write whatever you want as text.<br />See example:<br />Input: [<strong>$1</strong>][<strong>$2</strong>][<strong>$3</strong>] <strong>$4</strong><br />Output: <strong> [3546][fix][global] change button color</strong>",
     "msg015": "The subject field is of great importance to give meaning to your commit/check-in message. In this field, inform what your commit/check-in does in relation to the project. Choose to use verbs in the imperative mode of the 2nd person singular, as this is usually the easiest way to write a good message.",
-    "msg016": "❤️ Did you like the extension?<br/>If it helps you in any way and you want to support this project, you can make a <strong>pix</strong> payment by scanning this QR code, or buy me a coffee on <strong>buymeacoffee.com</strong> ☕"
+    "msg016": "❤️ Did you like the extension?<br/>If it helps you in any way and you want to support this project, you can make a <strong>pix</strong> payment by scanning this QR code, or buy me a coffee on <strong>buymeacoffee.com</strong> ☕",
+    "msg017": "This extension uses an abstraction of the <a href='https://www.conventionalcommits.org/' target='_blank'><strong >Conventional Commits</strong></a> specification. To know the meaning of each type, access the [Information] tab or click on the yellow text."
   }
 }

@@ -1,6 +1,16 @@
 @import "src/scss/mixins";
 @import "src/scss/variables";
 
+::ng-deep {
+  .nz-popover-ref {
+    a {
+      strong {
+        color: #ffdd00;
+      }
+    }
+  }
+}
+
 .container-form-message {
   @include override-ant-button($secondary-color, $secondary-color-hover);
   @include flex-center();

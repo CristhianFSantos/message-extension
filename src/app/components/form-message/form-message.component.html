@@ -35,6 +35,9 @@
             nzAllowClear
             [nzPlaceHolder]="'labels.msg008' | transloco"
             nzSize="large"
+            nz-popover
+            nzPopoverPlacement="top"
+            [nzPopoverContent]="nzPopoverPlacementRef"
           >
             <nz-option
               *ngFor="let item of listOptionsType | sortList : 'label' : 'asc'"
@@ -50,6 +53,13 @@
         </nz-form-control>
       </nz-form-item>
     </div>
+
+    <ng-template #nzPopoverPlacementRef>
+      <span
+        class="nz-popover-ref"
+        [innerHTML]="'description.msg017' | transloco"
+      ></span>
+    </ng-template>
 
     <nz-form-item>
       <nz-form-label [nzRequired]="isFieldsRequired" nzFor="scope">{{
