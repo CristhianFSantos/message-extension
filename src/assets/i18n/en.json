@@ -18,7 +18,7 @@
     "msg013": "Custom format",
     "msg014": "All fields are required",
     "msg015": "Result",
-    "msg016": "AutoSave"
+    "msg016": "Save the last message"
   },
   "error": {
     "msg001": "Required field",
