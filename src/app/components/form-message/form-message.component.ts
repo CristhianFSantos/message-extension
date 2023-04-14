@@ -126,7 +126,11 @@ export class FormMessageComponent implements OnInit, OnDestroy {
       | string
       | null;
 
-    if (lastMessage && this.messageCommit === '') {
+    if (
+      lastMessage &&
+      this.messageCommit === '' &&
+      this.userConfig?.saveLastMessage
+    ) {
       this.messageCommit = lastMessage;
     }
   }
