@@ -13,3 +13,7 @@ export const OPTIONS_TYPE: OptionsType[] = [
   { label: 'description.msg011', value: CommitType.Ci },
   { label: 'description.msg012', value: CommitType.Revert },
 ];
+
+export const GET_LABEL_BY_VALUE = (type: CommitType): string => {
+  return OPTIONS_TYPE.find((option) => option.value === type)?.label as string;
+};

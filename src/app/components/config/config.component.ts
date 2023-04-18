@@ -106,6 +106,6 @@ export class ConfigComponent implements OnInit {
       this.utilityService.eventNotifier$$.next();
     });
     this.changeTab.emit(0);
-    this.utilityService.showNotificationSuccess('success.msg002');
+    this.utilityService.showNotification('success.msg002', 'success');
   }
 }

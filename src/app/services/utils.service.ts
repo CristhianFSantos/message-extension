@@ -33,8 +33,8 @@ export class UtilityService {
     );
   }
 
-  showNotificationSuccess(message: string): void {
-    this.nzNotificationService.success(
+  showNotification(message: string, type: 'error' | 'success'): void {
+    this.nzNotificationService[type](
       '',
       this.translocoService.translate(message),
       {

@@ -29,8 +29,13 @@ import { Subject, takeUntil } from 'rxjs';
 import { SortListPipe } from 'src/app/pipes/sort-list.pipe';
 import { StorageService, UserConfig } from 'src/app/services/storage.service';
 import { UtilityService } from 'src/app/services/utils.service';
-import { OPTIONS_TYPE } from './form-message.const';
-import { FormMessage, Message, OptionsType } from './form-message.models';
+import { GET_LABEL_BY_VALUE, OPTIONS_TYPE } from './form-message.const';
+import {
+  CommitType,
+  FormMessage,
+  Message,
+  OptionsType,
+} from './form-message.models';
 @Component({
   selector: 'me-form-message',
   standalone: true,
@@ -61,8 +66,9 @@ export class FormMessageComponent implements OnInit, OnDestroy {
   private readonly storageService = inject(StorageService);
   private readonly utilityService = inject(UtilityService);
 
-  notifier$$ = new Subject<void>();
+  private readonly universalPattern = this.utilityService.universalPattern;
 
+  notifier$$ = new Subject<void>();
   listOptionsType: OptionsType[];
   formMessage: FormGroup<FormMessage>;
   messageCommit = '';
@@ -84,28 +90,16 @@ export class FormMessageComponent implements OnInit, OnDestroy {
   }
 
   async generateMessage(): Promise<void> {
-    const translateTypeLabel = OPTIONS_TYPE.find(
-      (option) => option.value === this.formMessage.controls.type.value
-    )?.label as string;
-
-    const message: Message = {
-      identifier: `${this.formMessage.controls.identifier.value}`,
-      type: this.translocoService.translate(translateTypeLabel),
-      scope: `${this.formMessage.controls.scope.value}`,
-      subject: `${this.formMessage.controls.subject.value}`,
-    };
-
     const pattern = this.formMessage.controls.customPattern.value
-      ? this.userConfig?.pattern ?? this.utilityService.universalPattern
-      : this.utilityService.universalPattern;
+      ? this.userConfig?.pattern ?? this.universalPattern
+      : this.universalPattern;
 
-    this.messageCommit = this.utilityService
-      .buildMessage(pattern, message)
-      .toLocaleLowerCase();
+    const message = this.toMessage(this.formMessage);
 
-    if (this.userConfig?.saveLastMessage) {
+    this.messageCommit = this.utilityService.buildMessage(pattern, message);
+
+    this.userConfig?.saveLastMessage &&
       this.storageService.postLastMessage(this.messageCommit);
-    }
 
     this.copyMessageCommit();
   }
@@ -115,7 +109,7 @@ export class FormMessageComponent implements OnInit, OnDestroy {
       this.messageCommitTemplateRef.nativeElement.focus();
       this.messageCommitTemplateRef.nativeElement.select();
       document.execCommand('copy');
-      this.utilityService.showNotificationSuccess('success.msg001');
+      this.utilityService.showNotification('success.msg001', 'success');
     }, 100);
   }
 
@@ -220,5 +214,18 @@ export class FormMessageComponent implements OnInit, OnDestroy {
         this.messageCommit = '';
         this.loadUserConfig();
       });
+  }
+
+  private toMessage(formGroup: FormGroup<FormMessage>): Message {
+    const controls = formGroup.controls;
+    return {
+      identifier: `${controls.identifier.value ?? ''}`,
+      type:
+        this.translocoService.translate(
+          GET_LABEL_BY_VALUE(controls.type.value as CommitType)
+        ) ?? '',
+      scope: controls.scope.value ?? '',
+      subject: controls.subject.value ?? '',
+    };
   }
 }
