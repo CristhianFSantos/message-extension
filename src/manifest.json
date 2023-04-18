@@ -12,6 +12,5 @@
   "icons": {
     "128": "/assets/images/icons/128.png"
   },
-  "host_permissions": ["<all_urls>"],
   "permissions": ["storage", "activeTab"]
 }
