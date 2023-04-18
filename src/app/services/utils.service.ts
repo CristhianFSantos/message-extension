@@ -53,4 +53,7 @@ export class UtilityService {
     const match = url.match(/issues\/(\d+)/);
     return match ? Number(match[1]) : null;
   };
+
+  removeDoubleSpaces = (text: string): string =>
+    text.replace(/\s{2,}/g, ' ').trim();
 }

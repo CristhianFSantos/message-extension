@@ -101,7 +101,15 @@ export class ConfigComponent implements OnInit {
   }
 
   save(): void {
-    const userConfig = this.formConfig.value as UserConfig;
+    const userConfig = {
+      ...(this.formConfig.value as UserConfig),
+      pattern: this.utilityService.removeDoubleSpaces(
+        this.formConfig.value.pattern || ''
+      ),
+    };
+
+    this.formConfig.controls.pattern.setValue(userConfig.pattern);
+
     this.storageService.postUserConfig(userConfig).then(() => {
       this.utilityService.eventNotifier$$.next();
     });
