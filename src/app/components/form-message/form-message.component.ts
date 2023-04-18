@@ -35,7 +35,6 @@ import { FormMessage, Message, OptionsType } from './form-message.models';
   selector: 'me-form-message',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-
   imports: [
     SortListPipe,
     CommonModule,
@@ -74,10 +73,9 @@ export class FormMessageComponent implements OnInit, OnDestroy {
     this.initFormMessage();
     this.loadUserConfig();
     this.observerNotifications();
-    this.tryGetIdWorkItemAzureDevops();
-    this.tryGetIdIssueGitHub();
     this.lazyLoadListOptionsType();
     this.tryLoadLastMessage();
+    this.tryGetIdentifierFromUrl();
   }
 
   ngOnDestroy(): void {
@@ -146,52 +144,22 @@ export class FormMessageComponent implements OnInit, OnDestroy {
     });
   }
 
-  private tryGetIdWorkItemAzureDevops(): void {
+  private tryGetIdentifierFromUrl(): void {
     chrome.tabs?.query({ active: true, currentWindow: true }, (tabs) => {
-      if (tabs) {
-        const extractWorkItemNumberFromUrl = (url: string): number | null => {
-          const pattern = /workitem=(\d+)/;
-          const match = url.match(pattern);
-          return match ? Number(match[1]) : null;
-        };
+      if (!tabs) return;
+      const url = tabs[0]['url'] ?? '';
 
-        const extractWorkItemNumberFromEditUrl = (
-          url: string
-        ): number | null => {
-          const pattern = /\/edit\/(\d+)/;
-          const match = url.match(pattern);
-          return match ? Number(match[1]) : null;
-        };
+      const issueNumber =
+        this.utilityService.extractIssueNumberFromGitHubUrl(url);
 
-        const workItemNumber =
-          extractWorkItemNumberFromUrl(tabs[0]['url'] ?? '') ??
-          extractWorkItemNumberFromEditUrl(tabs[0]['url'] ?? '') ??
-          0;
+      const workItemNumber =
+        this.utilityService.extractWorkItemNumberFromAzureUrl(url);
 
-        if (workItemNumber && !this.formMessage.controls.identifier.value) {
-          this.formMessage.controls.identifier.setValue(workItemNumber);
-          this.formMessage.controls.identifier.updateValueAndValidity();
-        }
-      }
-    });
-  }
+      const identifier = workItemNumber || issueNumber || null;
 
-  private tryGetIdIssueGitHub(): void {
-    chrome.tabs?.query({ active: true, currentWindow: true }, (tabs) => {
-      if (tabs) {
-        const extractIssueNumberFromUrl = (url: string): number | null => {
-          const pattern = /issues\/(\d+)/;
-          const match = url.match(pattern);
-          return match ? Number(match[1]) : null;
-        };
-
-        const issueNumber =
-          extractIssueNumberFromUrl(tabs[0]['url'] ?? '') ?? 0;
-
-        if (issueNumber && !this.formMessage.controls.identifier.value) {
-          this.formMessage.controls.identifier.setValue(issueNumber);
-          this.formMessage.controls.identifier.updateValueAndValidity();
-        }
+      if (identifier && !this.formMessage.controls.identifier.value) {
+        this.formMessage.controls.identifier.setValue(identifier);
+        this.formMessage.controls.identifier.updateValueAndValidity();
       }
     });
   }

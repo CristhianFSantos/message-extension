@@ -43,4 +43,14 @@ export class UtilityService {
       }
     );
   }
+
+  extractWorkItemNumberFromAzureUrl = (url: string): number | null => {
+    const match = url.match(/workitem=(\d+)/) ?? url.match(/\/edit\/(\d+)/);
+    return match ? Number(match[1]) : null;
+  };
+
+  extractIssueNumberFromGitHubUrl = (url: string): number | null => {
+    const match = url.match(/issues\/(\d+)/);
+    return match ? Number(match[1]) : null;
+  };
 }
