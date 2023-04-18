@@ -60,6 +60,12 @@
       </nz-form-control>
     </nz-form-item>
 
+    <span class="config-result">
+      <strong> {{ "labels.msg015" | transloco }}: </strong>
+      <br />
+      {{ messageExample }}</span
+    >
+
     <button
       [disabled]="formConfig.invalid"
       nz-button
@@ -72,10 +78,4 @@
       {{ "buttons.msg002" | transloco }}
     </button>
   </form>
-
-  <span class="config-result">
-    <strong> {{ "labels.msg015" | transloco }}: </strong>
-    <br />
-    {{ messageExample }}</span
-  >
 </main>
