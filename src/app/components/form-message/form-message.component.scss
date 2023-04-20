@@ -9,12 +9,19 @@
       }
     }
   }
+
+  .nz-tooltip-text {
+    strong {
+      color: #ffdd00;
+    }
+  }
 }
 
 .container-form-message {
   @include override-ant-button($secondary-color, $secondary-color-hover);
   @include flex-center();
   flex-direction: column;
+  padding-bottom: 40px;
 
   .ant-form-item {
     margin-bottom: 0;
@@ -40,6 +47,7 @@
     }
 
     .form-message-icon-info {
+      margin-top: 10px;
       display: block;
       text-align: start;
       cursor: pointer;
@@ -55,5 +63,13 @@
     textarea {
       resize: none;
     }
+  }
+
+  .pattern {
+    margin-top: 10px;
+    align-self: flex-start;
+    color: #707070;
+    font-size: 1rem;
+    font-weight: bold;
   }
 }

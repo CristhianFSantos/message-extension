@@ -61,6 +61,22 @@
       ></span>
     </ng-template>
 
+    <span
+      class="form-message-icon-info"
+      nz-icon
+      nzType="info-circle"
+      nzTheme="twotone"
+      [nzTooltipTitle]="scopeInfoTooltipTitleRef"
+      nzTooltipPlacement="bottomLeft"
+      nz-tooltip
+    ></span>
+    <ng-template #scopeInfoTooltipTitleRef>
+      <span
+        class="nz-tooltip-text"
+        [innerHTML]="'description.msg019' | transloco"
+      ></span>
+    </ng-template>
+
     <nz-form-item>
       <nz-form-label [nzRequired]="isFieldsRequired" nzFor="scope">{{
         "labels.msg003" | transloco
@@ -101,19 +117,25 @@
       </nz-form-control>
     </nz-form-item>
 
-    <label formControlName="customPattern" nz-checkbox>{{
-      "labels.msg009" | transloco
-    }}</label>
-
     <span
       class="form-message-icon-info"
       nz-icon
       nzType="info-circle"
       nzTheme="twotone"
-      nzTooltipTitle="{{ 'description.msg015' | transloco }}"
+      [nzTooltipTitle]="subjectInfoTooltipTitleRef"
       nzTooltipPlacement="topLeft"
       nz-tooltip
     ></span>
+    <ng-template #subjectInfoTooltipTitleRef>
+      <span
+        class="nz-tooltip-text"
+        [innerHTML]="'description.msg015' | transloco"
+      ></span>
+    </ng-template>
+
+    <label formControlName="customPattern" nz-checkbox>{{
+      "labels.msg009" | transloco
+    }}</label>
 
     <button
       [disabled]="!formMessage.valid"
@@ -150,4 +172,12 @@
       (click)="copyMessageCommit()"
     ></span>
   </ng-template>
+
+  <span class="pattern">{{
+    "description.msg020"
+      | transloco
+        : {
+            value: pattern
+          }
+  }}</span>
 </div>

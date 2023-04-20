@@ -12,6 +12,7 @@ export enum CommitType {
   Build = 'Build',
   Ci = 'Ci',
   Revert = 'Revert',
+  Merge = 'Merge',
 }
 
 export interface OptionsType {

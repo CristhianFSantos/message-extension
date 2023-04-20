@@ -74,6 +74,7 @@ export class FormMessageComponent implements OnInit, OnDestroy {
   messageCommit = '';
   userConfig: UserConfig | null = null;
   isFieldsRequired = true;
+  pattern = this.universalPattern;
 
   ngOnInit(): void {
     this.initFormMessage();
@@ -82,6 +83,7 @@ export class FormMessageComponent implements OnInit, OnDestroy {
     this.lazyLoadListOptionsType();
     this.tryLoadLastMessage();
     this.tryGetIdentifierFromUrl();
+    this.observerCustomPatternControl();
   }
 
   ngOnDestroy(): void {
@@ -172,6 +174,8 @@ export class FormMessageComponent implements OnInit, OnDestroy {
       this.userConfig.alwaysCustomFormat
     );
 
+    this.pattern = this.userConfig.pattern ?? this.universalPattern;
+
     this.applyConditionalRequiredValidator(
       this.userConfig.allFieldsRequired,
       this.formMessage
@@ -204,6 +208,16 @@ export class FormMessageComponent implements OnInit, OnDestroy {
     form.controls.type.updateValueAndValidity();
     form.controls.scope.updateValueAndValidity();
     form.controls.subject.updateValueAndValidity();
+  }
+
+  private observerCustomPatternControl(): void {
+    this.formMessage.controls.customPattern.valueChanges
+      .pipe(takeUntil(this.notifier$$))
+      .subscribe((value) => {
+        this.pattern = value
+          ? this.userConfig?.pattern ?? this.universalPattern
+          : this.universalPattern;
+      });
   }
 
   private observerNotifications(): void {

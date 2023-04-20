@@ -12,6 +12,7 @@ export const OPTIONS_TYPE: OptionsType[] = [
   { label: 'description.msg010', value: CommitType.Build },
   { label: 'description.msg011', value: CommitType.Ci },
   { label: 'description.msg012', value: CommitType.Revert },
+  { label: 'description.msg018', value: CommitType.Merge },
 ];
 
 export const GET_LABEL_BY_VALUE = (type: CommitType): string => {
